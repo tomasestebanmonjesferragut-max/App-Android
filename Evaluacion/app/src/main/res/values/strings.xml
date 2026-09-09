@@ -1,3 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Evaluacion</string>
+    <string name="app_name">MiAplicacion</string>
+
+    <!-- Textos de MainActivity (Login) -->
+    <string name="titulo_login">Login</string>
+    <string name="label_correo">Correo electrónico:</string>
+    <string name="hint_correo_ejemplo">ejemplo@correo.com</string>
+    <string name="label_contrasena">Contraseña:</string>
+    <string name="hint_contrasena_ingresa">Ingresa tu contraseña</string>
+    <string name="hint_usuario">Usuario</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="btn_salir">Salir</string>
+
+    <!-- Textos de RegistroActivity -->
+    <string name="registro_titulo">Registro de Usuario</string>
+    <string name="hint_rut">Rut</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_apellido_p">Apellido Paterno</string>
+    <string name="hint_apellido_m">Apellido Materno</string>
+    <string name="hint_edad">Edad</string>
+    <string name="genero_titulo">Género:</string>
+    <string name="genero_masculino">Masculino</string>
+    <string name="genero_femenino">Femenino</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="hint_direccion">Dirección</string>
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="btn_registrar">Registrarse</string>
+
+    <!-- Textos de BienvenidaActivity -->
+    <string name="mensaje_exito">Has iniciado sesión correctamente.</string>
+    <string name="btn_ir_tareas">Ir a Mis Tareas</string>
+
+    <!-- Textos de SegundaActivity (Gestor de Tareas) -->
+    <string name="bienvenido">Bienvenido</string>
+    <string name="categoria_tarea">Categoría de la tarea:</string>
+    <string name="urgente">Urgente:</string>
+    <string name="si_es_prioridad">Sí, es prioridad</string>
+    <string name="estado">Estado:</string>
+    <string name="pendiente">Pendiente</string>
+    <string name="en_proceso">En Proceso</string>
+    <string name="dificultad_tarea">Dificultad de la tarea:</string>
+    <string name="guardar_tarea">Guardar Tarea</string>
+    <string name="progreso_tareas">Progreso de tareas:</string>
+    <string name="mis_tareas_lista">Mis Tareas (Lista):</string>
+
+    <!-- Textos de card_layout (Item de RecyclerView) -->
+    <string name="item_tarea_titulo">Nombre de la tarea</string>
+    <string name="item_tarea_categoria">Categoría</string>
+
+    <!-- Descripción para imágenes -->
+    <string name="descripcion_imagen">Imagen descriptiva</string>
 </resources>

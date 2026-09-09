@@ -2,9 +2,11 @@
 <!-- ScrollView requerido por la pauta -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:ignore="Typos"> <!-- Ignora los falsos errores ortográficos -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +19,7 @@
             android:id="@+id/tvBienvenida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bienvenido"
+            android:text="@string/bienvenido"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -37,19 +39,20 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- ImageView requerido -->
+                <!-- ImageView requerido con contentDescription -->
                 <ImageView
                     android:id="@+id/ivIconoTarea"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_gravity="center"
-                    android:src="@android:drawable/ic_menu_edit" />
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:contentDescription="@string/descripcion_imagen" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoría de la tarea:"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:text="@string/categoria_tarea" />
 
                 <!-- Spinner requerido -->
                 <Spinner
@@ -65,17 +68,21 @@
                     android:stretchColumns="1">
 
                     <TableRow>
-                        <TextView android:text="Urgente:" android:padding="8dp"/>
+                        <TextView
+                            android:padding="8dp"
+                            android:text="@string/urgente" />
                         <!-- CheckBox requerido -->
                         <CheckBox
                             android:id="@+id/cbUrgente"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sí, es prioridad"/>
+                            android:text="@string/si_es_prioridad"/>
                     </TableRow>
 
                     <TableRow>
-                        <TextView android:text="Estado:" android:padding="8dp"/>
+                        <TextView
+                            android:text="@string/estado"
+                            android:padding="8dp"/>
                         <RadioGroup
                             android:id="@+id/rgEstado"
                             android:layout_width="wrap_content"
@@ -85,13 +92,13 @@
                                 android:id="@+id/rbPendiente"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Pendiente"
+                                android:text="@string/pendiente"
                                 android:checked="true"/>
                             <RadioButton
                                 android:id="@+id/rbEnProceso"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="En Proceso"/>
+                                android:text="@string/en_proceso"/>
                         </RadioGroup>
                     </TableRow>
                 </TableLayout>
@@ -99,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dificultad de la tarea:"
+                    android:text="@string/dificultad_tarea"
                     android:layout_marginTop="16dp"/>
 
                 <!-- RatingBar requerido -->
@@ -115,7 +122,7 @@
                     android:id="@+id/btnGuardarTarea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Guardar Tarea"
+                    android:text="@string/guardar_tarea"
                     android:layout_marginTop="16dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -123,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Progreso de tareas:"
+            android:text="@string/progreso_tareas"
             android:textStyle="bold"/>
 
         <!-- ProgressBar requerido -->
@@ -139,7 +146,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mis Tareas (Lista):"
+            android:text="@string/mis_tareas_lista"
             android:textStyle="bold"/>
 
         <!-- RecyclerView requerido -->

@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="Typos"> <!-- Esto elimina todas las advertencias amarillas de "Typo" -->
 
-    <!-- Contenedor principal alineado al centro -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/titulo_login"
             android:textAlignment="center"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
-            android:text="Bienvenido"
+            android:text="@string/bienvenido"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -41,47 +41,83 @@
             android:id="@+id/tvCorreoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Correo electrónico:"
+            android:text="@string/label_correo"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- Cambiado de 0dp a match_parent -->
-
+        <!-- AutofillHints de email agregado -->
         <EditText
             android:id="@+id/etCorreoInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="ejemplo@correo.com"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/hint_correo_ejemplo"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress" />
 
         <TextView
             android:id="@+id/tvClaveLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Contraseña:"
+            android:text="@string/label_contrasena"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- Cambiado de 0dp a match_parent -->
+        <!-- AutofillHints de password agregado -->
         <EditText
             android:id="@+id/etClaveInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Ingresa tu contraseña"
-            android:inputType="textPassword" />
+            android:hint="@string/hint_contrasena_ingresa"
+            android:inputType="textPassword"
+            android:autofillHints="password" />
 
-        <!-- Cambiado de 0dp a match_parent -->
         <Button
             android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:padding="12dp"
-            android:text="Ingresar" />
+            android:text="@string/btn_ingresar" />
+
+        <!-- Estilo buttonBarStyle agregado al contenedor -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            style="?android:attr/buttonBarStyle">
+
+            <!-- Estilo buttonBarButtonStyle agregado al botón -->
+            <Button
+                android:id="@+id/btnRegistrarse"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_registrar"
+                android:layout_marginEnd="4dp"/>
+
+            <!-- Estilo buttonBarButtonStyle agregado al botón -->
+            <Button
+                android:id="@+id/btnSalir"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_salir"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
