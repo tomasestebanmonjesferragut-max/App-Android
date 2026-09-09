@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="32dp"
     tools:context=".MainActivity"
-    tools:ignore="Typos"> <!-- Esto elimina todas las advertencias amarillas de "Typo" -->
+    tools:ignore="Typos,VisualLintTextFieldSize,VisualLintButtonSize,VisualLintBounds">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +45,13 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- AutofillHints de email agregado -->
         <EditText
             android:id="@+id/etCorreoInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
             android:hint="@string/hint_correo_ejemplo"
             android:inputType="textEmailAddress"
             android:autofillHints="emailAddress" />
@@ -64,12 +65,13 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- AutofillHints de password agregado -->
         <EditText
             android:id="@+id/etClaveInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
             android:hint="@string/hint_contrasena_ingresa"
             android:inputType="textPassword"
             android:autofillHints="password" />
@@ -79,10 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:minHeight="48dp"
             android:padding="12dp"
             android:text="@string/btn_ingresar" />
 
-        <!-- Estilo buttonBarStyle agregado al contenedor -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,22 +92,22 @@
             android:layout_marginTop="8dp"
             style="?android:attr/buttonBarStyle">
 
-            <!-- Estilo buttonBarButtonStyle agregado al botón -->
             <Button
                 android:id="@+id/btnRegistrarse"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="1"
                 android:text="@string/btn_registrar"
                 android:layout_marginEnd="4dp"/>
 
-            <!-- Estilo buttonBarButtonStyle agregado al botón -->
             <Button
                 android:id="@+id/btnSalir"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_weight="1"
                 android:text="@string/btn_salir"
                 android:layout_marginStart="4dp"/>

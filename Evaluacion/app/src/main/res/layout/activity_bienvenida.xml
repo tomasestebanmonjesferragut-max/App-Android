@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".activity_bienvenida"
+    tools:ignore="Typos">
 
-    <!-- Icono decorativo -->
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -14,7 +16,6 @@
         android:contentDescription="@string/descripcion_imagen"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Mensaje de Bienvenida -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,11 +32,11 @@
         android:textAlignment="center"
         android:layout_marginBottom="32dp"/>
 
-    <!-- Botón para ir a tu SegundaActivity (Gestor de tareas) -->
     <Button
         android:id="@+id/btnIrATareas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:text="@string/btn_ir_tareas" />
 
 </LinearLayout>

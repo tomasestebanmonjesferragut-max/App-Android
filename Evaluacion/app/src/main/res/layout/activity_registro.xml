@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistroActivity"
-    tools:ignore="Typos"> <!-- Ignora las advertencias de ortografía en español -->
+    tools:ignore="Typos,VisualLintTextFieldSize,VisualLintButtonSize,VisualLintBounds">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,6 +35,8 @@
                 android:id="@+id/etRut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_rut"
                 android:inputType="text"
                 android:importantForAutofill="no"
@@ -44,6 +46,8 @@
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_nombre"
                 android:inputType="textPersonName"
                 android:autofillHints="name" />
@@ -52,6 +56,8 @@
                 android:id="@+id/etApellidoPaterno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_apellido_p"
                 android:inputType="textPersonName"
                 android:autofillHints="personFamilyName" />
@@ -60,6 +66,8 @@
                 android:id="@+id/etApellidoMaterno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_apellido_m"
                 android:inputType="textPersonName"
                 android:autofillHints="personFamilyName" />
@@ -68,6 +76,8 @@
                 android:id="@+id/etEdad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_edad"
                 android:inputType="number"
                 android:importantForAutofill="no"
@@ -88,11 +98,13 @@
                     android:id="@+id/rbMasculino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:text="@string/genero_masculino"/>
                 <RadioButton
                     android:id="@+id/rbFemenino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:text="@string/genero_femenino"/>
             </RadioGroup>
 
@@ -100,6 +112,8 @@
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_telefono"
                 android:inputType="phone"
                 android:autofillHints="phone" />
@@ -108,6 +122,8 @@
                 android:id="@+id/etDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_direccion"
                 android:inputType="textPostalAddress"
                 android:autofillHints="postalAddress" />
@@ -116,6 +132,8 @@
                 android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
                 android:hint="@string/hint_correo"
                 android:inputType="textEmailAddress"
                 android:autofillHints="emailAddress" />
