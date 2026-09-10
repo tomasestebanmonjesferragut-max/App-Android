@@ -34,6 +34,8 @@
 
     <!-- Textos de SegundaActivity (Gestor de Tareas) -->
     <string name="bienvenido">Bienvenido</string>
+    <string name="titulo_tarea_label">Título de la tarea:</string>
+    <string name="hint_titulo_tarea">Ingresa el título de la tarea</string>
     <string name="categoria_tarea">Categoría de la tarea:</string>
     <string name="urgente">Urgente:</string>
     <string name="si_es_prioridad">Sí, es prioridad</string>

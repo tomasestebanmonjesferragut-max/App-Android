@@ -1,5 +1,6 @@
 package com.example.evaluacion;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -23,9 +25,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 public class SegundaActivity extends AppCompatActivity {
 
     private TextView tvBienvenida;
+    private EditText etTituloTarea;
     private Spinner spCategoria;
     private CheckBox cbUrgente;
     private RadioGroup rgEstado;
@@ -33,6 +41,10 @@ public class SegundaActivity extends AppCompatActivity {
     private ProgressBar pbProgreso;
     private Button btnGuardarTarea;
     private RecyclerView rvTareas;
+
+    private ArrayList<String> listaTareas;
+    private TareaAdapter tareaAdapter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,7 @@ public class SegundaActivity extends AppCompatActivity {
 
         // 1. Enlazar variables con XML (findViewById)
         tvBienvenida = findViewById(R.id.tvBienvenida);
+        etTituloTarea = findViewById(R.id.etTituloTarea);
         spCategoria = findViewById(R.id.spCategoria);
         cbUrgente = findViewById(R.id.cbUrgente);
         rgEstado = findViewById(R.id.rgEstado);
@@ -61,7 +74,9 @@ public class SegundaActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String correoRecibido = extras.getString("DATO_CORREO");
-            tvBienvenida.setText("Bienvenido:\n" + correoRecibido);
+            if (correoRecibido != null && !correoRecibido.isEmpty()) {
+                tvBienvenida.setText("Bienvenido:\n" + correoRecibido);
+            }
         }
 
         // 3. Configurar el Spinner (desplegable)
@@ -69,33 +84,61 @@ public class SegundaActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
         spCategoria.setAdapter(adapter);
 
-        // 4. Configurar el RecyclerView
+        // 4. Inicializar SharedPreferences y cargar tareas guardadas (sin datos por defecto)
+        sharedPreferences = getSharedPreferences("MisTareasPrefs", MODE_PRIVATE);
+        Set<String> tareasGuardadas = sharedPreferences.getStringSet("tareas_key", new LinkedHashSet<>());
+        listaTareas = new ArrayList<>(tareasGuardadas);
+
+        // 5. Configurar el RecyclerView
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
-        String[] tareasDePrueba = {"Terminar el laboratorio", "Estudiar Java", "Comprar pan"};
-        rvTareas.setAdapter(new TareaAdapter(tareasDePrueba));
+        tareaAdapter = new TareaAdapter(listaTareas);
+        rvTareas.setAdapter(tareaAdapter);
 
-        // 5. Lógica del botón Guardar
-        btnGuardarTarea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int progresoActual = pbProgreso.getProgress();
-                if(progresoActual < 100){
-                    pbProgreso.setProgress(progresoActual + 20);
-                }
-
-                String categoria = spCategoria.getSelectedItem().toString();
-                float dificultad = rbDificultad.getRating();
-                Toast.makeText(SegundaActivity.this, "Tarea guardada: " + categoria + " | Dificultad: " + dificultad, Toast.LENGTH_SHORT).show();
+        // 6. Lógica del botón Guardar
+        btnGuardarTarea.setOnClickListener(v -> {
+            String titulo = etTituloTarea.getText().toString().trim();
+            if (titulo.isEmpty()) {
+                Toast.makeText(SegundaActivity.this, "Por favor ingresa el título de la tarea", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            String categoria = spCategoria.getSelectedItem().toString();
+            boolean urgente = cbUrgente.isChecked();
+            float dificultad = rbDificultad.getRating();
+
+            String tareaInfo = titulo + " (" + categoria + ")" + (urgente ? " [URGENTE]" : "") + " - Dif: " + (int)dificultad + "★";
+
+            listaTareas.add(tareaInfo);
+
+            // Guardar en SharedPreferences
+            Set<String> setParaGuardar = new LinkedHashSet<>(listaTareas);
+            sharedPreferences.edit().putStringSet("tareas_key", setParaGuardar).apply();
+
+            tareaAdapter.actualizarLista(listaTareas);
+            etTituloTarea.setText("");
+            cbUrgente.setChecked(false);
+            rbDificultad.setRating(0);
+
+            int progresoActual = pbProgreso.getProgress();
+            if (progresoActual < 100) {
+                pbProgreso.setProgress(progresoActual + 20);
+            }
+
+            Toast.makeText(SegundaActivity.this, "¡Tarea guardada con éxito!", Toast.LENGTH_SHORT).show();
         });
     }
 
     // Adaptador clásico para el RecyclerView
     private class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
-        private String[] datos;
+        private List<String> datos;
 
-        public TareaAdapter(String[] datos) {
+        public TareaAdapter(List<String> datos) {
             this.datos = datos;
+        }
+
+        public void actualizarLista(List<String> nuevosDatos) {
+            this.datos = nuevosDatos;
+            notifyDataSetChanged();
         }
 
         @NonNull
@@ -107,12 +150,12 @@ public class SegundaActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull TareaViewHolder holder, int position) {
-            holder.tvTitulo.setText(datos[position]);
+            holder.tvTitulo.setText(datos.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return datos.length;
+            return datos.size();
         }
 
         class TareaViewHolder extends RecyclerView.ViewHolder {
